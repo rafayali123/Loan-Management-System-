@@ -1,0 +1,389 @@
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablets - 768px and down */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 70px;
+    }
+    
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    
+    .sidebar-header {
+        flex: 1;
+        justify-content: space-between;
+    }
+    
+    .sidebar-header h2 {
+        font-size: 18px;
+    }
+    
+    .toggle-btn {
+        display: block;
+    }
+    
+    .sidebar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--dark-bg);
+        width: 100%;
+        padding: 10px 0;
+        z-index: 100;
+    }
+    
+    .sidebar-nav.show {
+        display: block;
+    }
+    
+    .sidebar-nav ul {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+    
+    .sidebar-nav ul li {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .nav-link {
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+    
+    .sidebar-footer {
+        display: none;
+    }
+    
+    .top-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .header-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .content-wrapper {
+        padding: 20px 15px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .filter-bar {
+        flex-direction: column;
+    }
+    
+    .filter-select,
+    .filter-input {
+        width: 100%;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .data-table {
+        min-width: 500px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .settings-form {
+        max-width: 100%;
+    }
+}
+
+/* Small phones - 480px and down */
+@media (max-width: 480px) {
+    .login-box {
+        margin: 20px;
+        padding: 25px 15px;
+    }
+    
+    .logo-section h1 {
+        font-size: 22px;
+    }
+    
+    .logo-section p {
+        font-size: 12px;
+    }
+    
+    .top-header h1 {
+        font-size: 18px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-card h3 {
+        font-size: 12px;
+    }
+    
+    .stat-number {
+        font-size: 20px;
+    }
+    
+    .stat-label {
+        font-size: 10px;
+    }
+    
+    .section-header h2 {
+        font-size: 16px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+    
+    .btn-small {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .modal-content {
+        max-height: 95vh;
+    }
+    
+    .form-modal {
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .modal-header {
+        padding: 15px 20px;
+    }
+    
+    .modal-header h2 {
+        font-size: 16px;
+    }
+    
+    .close-btn {
+        font-size: 24px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .form-group input,
+    .form-input,
+    .filter-select,
+    .filter-input {
+        font-size: 13px;
+        padding: 10px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    .user-profile {
+        gap: 8px;
+    }
+    
+    .avatar {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Extra small phones - 360px and down */
+@media (max-width: 360px) {
+    .login-container {
+        padding: 10px;
+    }
+    
+    .login-box {
+        padding: 20px 10px;
+    }
+    
+    .logo-section h1 {
+        font-size: 20px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .form-group input,
+    .form-input {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 8px 3px;
+        font-size: 11px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .top-header,
+    .filter-bar,
+    .btn-primary,
+    .btn-secondary,
+    .action-buttons {
+        display: none;
+    }
+    
+    .main-content {
+        width: 100%;
+    }
+    
+    .content-wrapper {
+        padding: 0;
+    }
+    
+    .data-table {
+        border: 1px solid #ccc;
+    }
+    
+    .data-table th,
+    .data-table td {
+        border: 1px solid #ccc;
+    }
+}
+
+/* Landscape Mode */
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard-container {
+        flex-direction: row;
+    }
+    
+    .sidebar {
+        width: 100px;
+        flex-direction: column;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: none;
+    }
+    
+    .sidebar-nav {
+        display: flex !important;
+        flex-direction: column;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        padding: 10px 0;
+        background-color: transparent;
+    }
+    
+    .sidebar-nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .sidebar-nav ul li {
+        flex: none;
+        min-width: auto;
+    }
+    
+    .nav-link {
+        padding: 8px;
+        text-align: center;
+        font-size: 11px;
+    }
+    
+    .sidebar-footer {
+        display: block;
+    }
+    
+    .sidebar-header h2 {
+        font-size: 14px;
+    }
+    
+    .content-wrapper {
+        padding: 15px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

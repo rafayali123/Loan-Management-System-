@@ -1,0 +1,53 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+.m2/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# Build
+bin/
+build/
+dist/
+*.jar
+*.war
+*.ear
+
+# Runtime
+.env
+logs/
+*.log
+db.h2.db
+
+# Node (if frontend dependencies)
+node_modules/
+package-lock.json
+
+# System
+.gradle/
+.m2/
+thumbs.db
+
+# IDE settings
+.vscode/settings.json
+
+# Spring Boot
+spring-boot-devtools.properties

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Loan Management System</title>
+    <link rel="icon" href="/static/images/favicon.jpg">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LMS Admin</h2>
+                <button id="toggleSidebar" class="toggle-btn">☰</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#" class="nav-link" data-section="customers">Customers</a></li>
+                    <li><a href="#" class="nav-link" data-section="loans">Manage Loans</a></li>
+                    <li><a href="#" class="nav-link" data-section="notifications">SMS Notifications</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="header-right">
+                    <input type="search" class="search-box" placeholder="Search...">
+                    <div class="user-profile">
+                        <img src="/static/images/avatar.jpg" alt="User" class="avatar">
+                        <span id="userName">Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <h3>Total Customers</h3>
+                            <p class="stat-number" id="totalCustomers">0</p>
+                            <p class="stat-label">Registered</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Loans</h3>
+                            <p class="stat-number" id="activeLoan">0</p>
+                            <p class="stat-label">In Progress</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Pending Approvals</h3>
+                            <p class="stat-number" id="pendingLoans">0</p>
+                            <p class="stat-label">Awaiting Review</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Disbursed</h3>
+                            <p class="stat-number" id="totalDisbursed">PKR 0</p>
+                            <p class="stat-label">Amount</p>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Section -->
+                    <div class="analytics-section">
+                        <h2 style="margin-bottom: 20px; color: #333;">📊 Loan Analytics</h2>
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <div class="analytics-icon approved">✓</div>
+                                <div class="analytics-info">
+                                    <h4>Approved Loans</h4>
+                                    <p class="analytics-number" id="approvedCount">0</p>
+                                    <p class="analytics-detail">Total: PKR <span id="approvedAmount">0</span></p>
+                                </div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon pending">⏳</div>
+                                <div class="analytics-info">
+                                    <h4>Pending Loans</h4>
+                                    <p class="analytics-number" id="pendingCount">0</p>
+                                    <p class="analytics-detail">Total: PKR <span id="pendingAmount">0</span></p>
+                                </div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon rejected">✕</div>
+                                <div class="analytics-info">
+                                    <h4>Rejected Loans</h4>
+                                    <p class="analytics-number" id="rejectedCount">0</p>
+                                    <p class="analytics-detail">Total: PKR <span id="rejectedAmount">0</span></p>
+                                </div>
+                            </div>
+                            <div class="analytics-card">
+                                <div class="analytics-icon success">💰</div>
+                                <div class="analytics-info">
+                                    <h4>Total Portfolio</h4>
+                                    <p class="analytics-number">Rs.<span id="totalPortfolio">0</span></p>
+                                    <p class="analytics-detail"><span id="loanPercentage">0</span>% Approved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-charts">
+                        <div class="chart-container">
+                            <h3>Loan Applications by Month</h3>
+                            <canvas id="loanChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Loan Status Distribution</h3>
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Customers Section -->
+                <section id="customers-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Customer Management</h2>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <input type="search" id="customerSearch" placeholder="Search customers by name, email, or phone..." style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="customersTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>City</th>
+                                    <th>Annual Income</th>
+                                    <th>Loan Applications</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 30px; color: #999;">Loading customers...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Loans Section -->
+                <section id="loans-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Loan Management</h2>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <input type="search" id="loanSearch" placeholder="Search by loan details..." style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        <div>
+                            <select id="loanStatusFilter" style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+                                <option value="">All Status</option>
+                                <option value="PENDING">Pending (Awaiting Action)</option>
+                                <option value="APPROVED">Approved</option>
+                                <option value="REJECTED">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="loansTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Phone</th>
+                                    <th>Loan Amount</th>
+                                    <th>Term</th>
+                                    <th>Purpose</th>
+                                    <th>Status</th>
+                                    <th>Applied Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loansTableBody">
+                                <tr>
+                                    <td colspan="8" style="text-align: center; padding: 30px; color: #999;">Loading loan applications...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Notifications Section -->
+                <section id="notifications-section" class="content-section">
+                    <div class="section-header">
+                        <h2>📱 Send SMS Notifications</h2>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                        
+                        <form id="smsNotificationForm">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div class="form-group">
+                                    <label>Select Customer/Loan <span class="required">*</span></label>
+                                    <select id="notificationLoanSelect" required style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                                        <option value="">-- Select Loan Application --</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Message Type <span class="required">*</span></label>
+                                    <select id="messageType" required onchange="updateMessageTemplate()" style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                                        <option value="">-- Select Message Type --</option>
+                                        <option value="APPROVAL">Loan Approval</option>
+                                        <option value="REJECTION">Loan Rejection</option>
+                                        <option value="REMINDER">Payment Reminder</option>
+                                        <option value="CUSTOM">Custom Message</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label>Message <span class="required">*</span></label>
+                                <textarea id="smsMessage" name="message" placeholder="Enter SMS message..." required style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; min-height: 120px; resize: vertical; width: 100%;"></textarea>
+                                <small style="color: #6b7280; display: block; margin-top: 5px;">Characters: <span id="charCount">0</span>/160 | SMS will be sent to customer's registered phone number</small>
+                            </div>
+                            
+                            <div id="smsAlertBox" class="alert" style="display: none; margin-bottom: 15px;"></div>
+                            
+                            <div style="display: flex; gap: 10px; justify-content: end;">
+                                <button type="submit" style="background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%); color: white; border: none; padding: 12px 30px; border-radius: 6px; font-weight: 600; cursor: pointer;">Send SMS Notification</button>
+                                <button type="reset" style="background: #e5e7eb; color: #1f2937; border: none; padding: 12px 30px; border-radius: 6px; font-weight: 600; cursor: pointer;">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal for Loan Approve/Reject -->
+    <div id="loanActionModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 id="loanActionTitle">Review Loan Application</h2>
+                <button class="close-btn" onclick="closeLoanActionModal()">&times;</button>
+            </div>
+            <div id="loanActionContent" style="margin-bottom: 20px; padding: 20px 30px;">
+                <!-- Loan details will be inserted here -->
+            </div>
+            <div id="rejectionReasonContainer" style="padding: 0 30px; margin-bottom: 15px; display: none;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #1f2937;">Rejection Reason (optional)</label>
+                <textarea id="rejectionReason" placeholder="Enter reason for rejection..." style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; resize: vertical; height: 80px; font-family: inherit; font-size: 14px;"></textarea>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 30px 30px 30px;">
+                <button onclick="approveLoan()" style="background-color: #10b981; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer;">Approve Loan</button>
+                <button onclick="toggleRejectMode()" id="rejectLoanBtn" style="background-color: #ef4444; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer;">Reject Loan</button>
+            </div>
+            <div id="confirmRejectContainer" style="padding: 0 30px 30px 30px; display: none; border-top: 1px solid #e5e7eb; padding-top: 15px; margin-top: 15px;">
+                <p style="color: #7f1d1d; font-weight: 600; margin-bottom: 10px;">⚠ Confirm Rejection?</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button onclick="confirmRejectLoan()" style="background-color: #dc2626; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Yes, Reject</button>
+                    <button onclick="cancelReject()" style="background-color: #9ca3af; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal for Create Loan -->
+    <div id="createLoanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Loan for Customer</h2>
+                <button class="close-btn" onclick="closeCreateLoanModal()">&times;</button>
+            </div>
+            <form id="createLoanForm">
+                <div class="inner-content-modal">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Customer<span class="required">*</span></label>
+                    <select id="createLoanCustomer" required style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                        <option value="">-- Select Customer --</option>
+                    </select>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label>Loan Amount (Rs.)<span class="required">*</span></label>
+                        <input type="number" id="createLoanAmount" required min="10000" step="1000" placeholder="Enter amount" style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Interest Rate (%)<span class="required">*</span></label>
+                        <input type="number" id="createLoanRate" required min="0" max="50" step="0.01" value="10" placeholder="Enter rate" style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label>Term (Months)<span class="required">*</span></label>
+                        <select id="createLoanTerm" required style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                            <option value="">Select Term</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">12 Months (1 Year)</option>
+                            <option value="24">24 Months (2 Years)</option>
+                            <option value="36">36 Months (3 Years)</option>
+                            <option value="48">48 Months (4 Years)</option>
+                            <option value="60">60 Months (5 Years)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Purpose<span class="required">*</span></label>
+                        <select id="createLoanPurpose" required style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%;">
+                            <option value="">Select Purpose</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Home">Home Purchase</option>
+                            <option value="Vehicle">Vehicle Purchase</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>Description (Optional)</label>
+                    <textarea id="createLoanDescription" placeholder="Add any notes..." style="padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px; width: 100%; min-height: 80px;"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: end;">
+                    <button type="submit" style="background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%); color: white; border: none; padding: 12px 30px; border-radius: 6px; font-weight: 600; cursor: pointer;">Create Loan</button>
+                    <button type="button" onclick="closeCreateLoanModal()" style="background: #e5e7eb; color: #1f2937; border: none; padding: 12px 30px; border-radius: 6px; font-weight: 600; cursor: pointer;">Cancel</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/static/js/dashboard-admin.js"></script>
+</body>
+</html>

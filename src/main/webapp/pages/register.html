@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Loan Management System</title>
+        <link rel="icon" href="/static/images/favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1E3A8A ;
+            --secondary-color: #3B82F6;
+            --danger-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f3f4f6;
+            --dark-text: #1f2937;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(140deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 40px 30px;
+            color: #000;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 8px;
+           color: var(--primary-color);
+        }
+
+        .card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row-full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        .required {
+            color: var(--danger-color);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background-color: #f9fafb;
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--danger-color);
+        }
+
+        input:valid:not(:placeholder-shown) {
+            border-color: var(--success-color);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            margin-top: 20px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary.loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .card-footer {
+            padding: 20px 30px;
+            background-color: var(--light-bg);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .card-footer p {
+            font-size: 14px;
+            color: var(--dark-text);
+            margin: 0;
+        }
+
+        .card-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .card-footer a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background-color: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .strength-fill.weak {
+            width: 33%;
+            background-color: var(--danger-color);
+        }
+
+        .strength-fill.medium {
+            width: 66%;
+            background-color: var(--warning-color);
+        }
+
+        .strength-fill.strong {
+            width: 100%;
+            background-color: var(--success-color);
+        }
+
+        .strength-text {
+            color: var(--dark-text);
+        }
+
+        .strength-text.weak {
+            color: var(--danger-color);
+        }
+
+        .strength-text.medium {
+            color: var(--warning-color);
+        }
+
+        .strength-text.strong {
+            color: var(--success-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-header {
+                padding: 30px 20px;
+            }
+
+            .card-header h1 {
+                font-size: 24px;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .card-footer {
+                padding: 15px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row-full {
+                grid-column: 1;
+            }
+
+            input, textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-header {
+                padding: 25px 15px;
+            }
+
+            .card-header h1 {
+                font-size: 22px;
+                margin-bottom: 5px;
+            }
+
+            .card-header p {
+                font-size: 12px;
+            }
+
+            .card-body {
+                padding: 15px;
+            }
+
+            .card-footer {
+                padding: 12px 15px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-size: 13px;
+            }
+
+            input, textarea {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 11px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Create Account</h1>
+                <p>Register as Admin to manage loans</p>
+            </div>
+
+            <div class="card-body">
+                <div class="success-message" id="successMessage">
+                    Registration successful! Redirecting to login...
+                </div>
+
+                <form id="registerForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName"
+                                placeholder="Enter First Name"
+                                required
+                                minlength="2"
+                                maxlength="50"
+                            >
+                            <div class="error-message" id="firstNameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName"
+                                placeholder="Enter Last Name"
+                                required
+                                minlength="2"
+                                maxlength="50"
+                            >
+                            <div class="error-message" id="lastNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row-full">
+                        <label for="username">Username <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username"
+                            placeholder="Choose a unique username"
+                            required
+                            minlength="3"
+                            maxlength="30"
+                            pattern="^[a-zA-Z0-9_]*$"
+                            title="Username can only contain letters, numbers, and underscores"
+                        >
+                        <div class="error-message" id="usernameError"></div>
+                    </div>
+
+                    <div class="form-group form-row-full">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            placeholder="your.email@example.com"
+                            required
+                        >
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group form-row-full">
+                        <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+                        <input 
+                            type="tel" 
+                            id="phoneNumber" 
+                            name="phoneNumber"
+                            placeholder="92 9876543210"
+                            required
+                            pattern="^\+?[0-9]\d{1,14}$"
+                            title="Enter a valid phone number"
+                        >
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+
+                    <div class="form-group form-row-full">
+                        <label for="password">Password <span class="required">*</span></label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password"
+                            placeholder="Create a strong password"
+                            required
+                            minlength="6"
+                            maxlength="100"
+                        >
+                        <div class="error-message" id="passwordError"></div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row-full">
+                        <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            required
+                            minlength="6"
+                            maxlength="100"
+                        >
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="registerBtn">Register</button>
+                </form>
+            </div>
+
+            <div class="card-footer">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const registerBtn = document.getElementById('registerBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Password strength checker
+        const passwordInput = document.getElementById('password');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+
+        passwordInput.addEventListener('input', (e) => {
+            const password = e.target.value;
+            let strength = 0;
+
+            // Check length
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            
+            // Check character variety
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            // Update strength indicator
+            strengthFill.className = 'strength-fill';
+            strengthText.className = 'strength-text';
+
+            if (strength <= 2) {
+                strengthFill.classList.add('weak');
+                strengthText.classList.add('weak');
+                strengthText.textContent = 'Weak password';
+            } else if (strength <= 4) {
+                strengthFill.classList.add('medium');
+                strengthText.classList.add('medium');
+                strengthText.textContent = 'Medium password';
+            } else {
+                strengthFill.classList.add('strong');
+                strengthText.classList.add('strong');
+                strengthText.textContent = 'Strong password';
+            }
+        });
+
+        // Form validation and submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.textContent = '';
+                msg.classList.remove('show');
+            });
+
+            // Validate form
+            if (!form.checkValidity()) {
+                // Show validation errors
+                const inputs = form.querySelectorAll('input[required]');
+                inputs.forEach(input => {
+                    if (!input.validity.valid) {
+                        const errorId = input.id + 'Error';
+                        const errorDiv = document.getElementById(errorId);
+                        if (errorDiv) {
+                            if (input.validity.valueMissing) {
+                                errorDiv.textContent = `${input.previousElementSibling.textContent.replace('*', '').trim()} is required`;
+                            } else if (input.validity.typeMismatch) {
+                                errorDiv.textContent = `Please enter a valid ${input.type}`;
+                            } else if (input.validity.tooShort) {
+                                errorDiv.textContent = `Minimum ${input.minLength} characters required`;
+                            } else if (input.validity.patternMismatch) {
+                                errorDiv.textContent = input.title || 'Invalid format';
+                            } else {
+                                errorDiv.textContent = 'Invalid input';
+                            }
+                            errorDiv.classList.add('show');
+                        }
+                    }
+                });
+                return;
+            }
+
+            // Check if passwords match
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('confirmPasswordError').classList.add('show');
+                return;
+            }
+
+            // Prepare form data
+            const formData = {
+                fullName: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                password: password,
+                isActive: true
+            };
+
+            // Disable button and show loading state
+            registerBtn.disabled = true;
+            registerBtn.classList.add('loading');
+            registerBtn.textContent = '';
+            const spinner = document.createElement('div');
+            spinner.className = 'spinner';
+            registerBtn.appendChild(spinner);
+            const text = document.createTextNode('Registering...');
+            registerBtn.appendChild(text);
+
+            try {
+                const response = await fetch('/api/auth/register/admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Show success message
+                    successMessage.classList.add('show');
+                    
+                    // Clear form
+                    form.reset();
+                    strengthFill.className = 'strength-fill';
+                    strengthText.textContent = '';
+
+                    // Redirect to login after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = '/pages/login.html';
+                    }, 2000);
+                } else {
+                    // Handle error response
+                    if (data.error) {
+                        if (data.error.includes('username')) {
+                            document.getElementById('usernameError').textContent = data.error;
+                            document.getElementById('usernameError').classList.add('show');
+                        } else if (data.error.includes('email')) {
+                            document.getElementById('emailError').textContent = data.error;
+                            document.getElementById('emailError').classList.add('show');
+                        } else {
+                            // Show generic error
+                            alert('Registration failed: ' + data.error);
+                        }
+                    }
+
+                    // Re-enable button
+                    registerBtn.disabled = false;
+                    registerBtn.classList.remove('loading');
+                    registerBtn.textContent = 'Register';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('An error occurred during registration. Please try again.');
+
+                // Re-enable button
+                registerBtn.disabled = false;
+                registerBtn.classList.remove('loading');
+                registerBtn.textContent = 'Register';
+            }
+        });
+
+        // Real-time form validation
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                const errorId = input.id + 'Error';
+                const errorDiv = document.getElementById(errorId);
+
+                if (!input.validity.valid && input.value) {
+                    if (errorDiv) {
+                        if (input.validity.typeMismatch) {
+                            errorDiv.textContent = `Please enter a valid ${input.type}`;
+                        } else if (input.validity.tooShort) {
+                            errorDiv.textContent = `Minimum ${input.minLength} characters required`;
+                        } else if (input.validity.patternMismatch) {
+                            errorDiv.textContent = input.title || 'Invalid format';
+                        } else {
+                            errorDiv.textContent = 'Invalid input';
+                        }
+                        errorDiv.classList.add('show');
+                    }
+                } else if (errorDiv) {
+                    errorDiv.textContent = '';
+                    errorDiv.classList.remove('show');
+                }
+            });
+
+            // Clear error on focus
+            input.addEventListener('focus', () => {
+                const errorId = input.id + 'Error';
+                const errorDiv = document.getElementById(errorId);
+                if (errorDiv) {
+                    errorDiv.textContent = '';
+                    errorDiv.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
