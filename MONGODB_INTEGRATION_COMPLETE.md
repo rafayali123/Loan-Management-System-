@@ -29,7 +29,7 @@
 1. Download: https://www.mongodb.com/products/compass
 2. Install and open
 3. Paste connection string:
-   mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db
+   mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db
 4. Click Connect
 5. Create 4 collections:
    - admins
@@ -255,7 +255,7 @@ Everything is built and configured. Just need to:
 
 **Your MongoDB Connection String:**
 ```
-mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db?retryWrites=true&w=majority
+mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db?retryWrites=true&w=majority
 ```
 
 **Dashboard URL:**

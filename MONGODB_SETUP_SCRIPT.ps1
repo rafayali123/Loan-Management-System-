@@ -8,7 +8,7 @@ Write-Host ""
 
 # Step 1: Verify MongoDB Connection
 Write-Host "Step 1: Verifying MongoDB Connection..." -ForegroundColor Yellow
-Write-Host "Connection String: mongodb+srv://alisyedabdulrafay7_db_user:***@cluster0.4vvrwmj.mongodb.net/loan_management_db" -ForegroundColor Cyan
+Write-Host "Connection String: mongodb+srv://YOUR_USERNAME:***@your-cluster.mongodb.net/loan_management_db" -ForegroundColor Cyan
 
 # Step 2: Install MongoDB Tools if needed
 $mongoDbToolsPath = "C:\Program Files\MongoDB\Tools\100\bin"
@@ -31,7 +31,7 @@ Write-Host ""
 Write-Host "Option A: Using MongoDB Compass (GUI - Recommended)" -ForegroundColor Cyan
 Write-Host "  1. Download MongoDB Compass: https://www.mongodb.com/products/compass" -ForegroundColor White
 Write-Host "  2. Install and open Compass" -ForegroundColor White
-Write-Host "  3. Paste connection string: mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db" -ForegroundColor White
+Write-Host "  3. Paste connection string: mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db" -ForegroundColor White
 Write-Host "  4. Click Connect" -ForegroundColor White
 Write-Host "  5. Create collection 'admins' and insert default admin user (instructions below)" -ForegroundColor White
 Write-Host ""

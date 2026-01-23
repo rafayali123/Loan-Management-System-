@@ -72,9 +72,9 @@
 ### Database (MongoDB Atlas)
 ```
 ✅ Connected to Your Cluster
-   - Cluster: cluster0.4vvrwmj.mongodb.net
+   - Cluster: your-cluster.mongodb.net
    - Database: loan_management_db
-   - User: alisyedabdulrafay7_db_user
+   - User: your_db_user
    - SSL/TLS: Enabled
    - Replication: Enabled
 
@@ -96,7 +96,7 @@
 2. Install and open
 3. Connection string:
    ```
-   mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db
+   mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db
    ```
 4. Create 4 collections:
    - admins

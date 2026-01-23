@@ -16,7 +16,7 @@ Click **New Connection** button
 ### Step 2: Paste Connection String
 In the connection string field, paste:
 ```
-mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db
+mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db
 ```
 
 ### Step 3: Connect

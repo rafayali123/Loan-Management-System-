@@ -5,7 +5,7 @@
 Your MongoDB Atlas connection string has been successfully added to the `.env` file:
 
 ```
-MONGODB_URI=mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db?retryWrites=true&w=majority
 MONGODB_DATABASE=loan_management_db
 ```
 

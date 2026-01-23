@@ -2,7 +2,7 @@
 
 ## YOUR MongoDB URI ✅
 ```
-mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db?retryWrites=true&w=majority
+mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db?retryWrites=true&w=majority
 ```
 
 ---
@@ -38,7 +38,7 @@ mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongo
 
 **Option B - MongoDB Shell (Terminal)**
 ```bash
-mongosh "mongodb+srv://alisyedabdulrafay7_db_user:v6kUnFf68uo49NR6@cluster0.4vvrwmj.mongodb.net/loan_management_db"
+mongosh "mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@your-cluster.mongodb.net/loan_management_db"
 
 db.createCollection("admins")
 db.createCollection("customers")

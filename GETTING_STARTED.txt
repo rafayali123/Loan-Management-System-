@@ -233,9 +233,9 @@
 │  🔗 IMPORTANT LINKS & CREDENTIALS                                         │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│  MongoDB Cluster:      cluster0.4vvrwmj.mongodb.net                        │
+│  MongoDB Cluster:      your-cluster.mongodb.net                           │
 │  Database:             loan_management_db                                  │
-│  MongoDB User:         alisyedabdulrafay7_db_user                          │
+│  MongoDB User:         your_db_user                                        │
 │                                                                             │
 │  Application URL:      http://localhost:8080/pages/login.html              │
 │  API Base:             http://localhost:8080/api                           │
