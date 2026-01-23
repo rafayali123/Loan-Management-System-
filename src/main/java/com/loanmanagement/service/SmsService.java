@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class SmsService {
 
-    private final String TOKEN = "apit-njEod4btQj9ECkgsuXhINsacWDKscULn-2gC58";
+    private final String TOKEN = "apit-UbRoEoEeIxnTUg0k5vxT0PQJbyO9EdVm-cCzHR";
     private final String Appname = "MOCEAN";
 
     @Async("taskExecutor")
